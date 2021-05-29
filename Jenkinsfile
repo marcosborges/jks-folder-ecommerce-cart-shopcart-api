@@ -22,6 +22,8 @@ pipeline {
             steps {
                 script {
                     sh 'echo $GLOBAL_VALUE | base64'
+                    sh 'echo DB_PASSWORD'
+                    sh 'echo $DB_PASSWORD | base64'
                 }
             }
         }
