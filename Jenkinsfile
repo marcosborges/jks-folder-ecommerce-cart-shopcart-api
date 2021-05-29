@@ -21,6 +21,14 @@ pipeline {
                     sh 'echo Review'
                 }
             }
+            post {
+                success {
+                    sh 'echo Review OK'
+                }
+                failure {
+                    sh 'echo Review FAILURE'
+                }
+            }
         }
         
         stage ( 'Build' ) {
@@ -45,6 +53,18 @@ pipeline {
                     sh 'echo Deploy'
                 }
             }
+        }
+    }
+
+    post {
+        success {
+            script {
+                sh 'echo SUCCESS'
+            }
+            cleanWs()
+        }
+        failure {
+            sh 'echo FAILURE'
         }
     }
 }
