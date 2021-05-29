@@ -22,5 +22,37 @@ pipeline {
                 }
             }
         }
+        
+        stage ( 'Review' ) {
+            steps {
+                script {
+                    sh 'echo Review'
+                }
+            }
+        }
+        
+        stage ( 'Build' ) {
+            steps {
+                script {
+                    sh 'echo Build'
+                }
+            }
+        }
+        
+        stage ( 'Registry' ) {
+            steps {
+                script {
+                    sh 'echo Registry'
+                }
+            }
+        }
+        
+        stage ( 'Deploy' ) {
+            steps {
+                script {
+                    sh 'echo Deploy'
+                }
+            }
+        }
     }
 }
