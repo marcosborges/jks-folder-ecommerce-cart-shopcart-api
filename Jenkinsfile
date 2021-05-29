@@ -15,14 +15,6 @@ pipeline {
 
     stages {
 
-        stage ( 'Checkout Sources' ) {
-            steps {
-                script {
-                    sh(label: "Echo", script: 'echo 123', returnStdout: false)             
-                }
-            }
-        }
-        
         stage ( 'Review' ) {
             steps {
                 script {
