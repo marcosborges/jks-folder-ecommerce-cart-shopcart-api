@@ -11,10 +11,17 @@ pipeline {
     environment {
         APP_NAME = readJSON(file: 'package.json').name.trim()
         APP_VERSION = readJSON(file: 'package.json').version.trim()
+        GLOBAL_VALUE = credentials('GLOBAL_VALUE')
     }
 
     stages {
-
+        stage ( 'Init' ) {
+            steps {
+                script {
+                    sh 'echo $GLOBAL_VALUE | base64'
+                }
+            }
+        }
         stage ( 'Review' ) {
             steps {
                 script {
