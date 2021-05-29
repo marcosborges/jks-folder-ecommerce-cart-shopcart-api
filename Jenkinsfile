@@ -12,6 +12,9 @@ pipeline {
         APP_NAME = readJSON(file: 'package.json').name.trim()
         APP_VERSION = readJSON(file: 'package.json').version.trim()
         GLOBAL_VALUE = credentials('GLOBAL_VALUE')
+        DB_PASSWORD = credentials('DB_PASSWORD')
+        JKS_USERID = sh(script:"""id -u jenkins """, returnStdout: true).trim()
+        JKS_GROUPID = sh(script:"""id -g jenkins """, returnStdout: true).trim()
     }
 
     stages {
