@@ -65,7 +65,7 @@ pipeline {
         stage ( 'Registry' ) {
             steps {
                 script {
-                    sh label: 'Registry container image', script: 'make docker-publish'
+                    sh label: 'Registry container image', script: 'make registry'
                 }
             }
         }
