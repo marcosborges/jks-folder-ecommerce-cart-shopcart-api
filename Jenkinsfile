@@ -24,7 +24,6 @@ pipeline {
         stage ( 'Init' ) {
             steps {
                 script {
-                    
                     echo("DB_HOSTNAME: ${env.DB_HOSTNAME}")
                     sh 'echo $GLOBAL_VALUE | base64'
                     sh 'echo DB_PASSWORD'
@@ -38,6 +37,14 @@ pipeline {
         }
         stage ( 'Review' ) {
             steps {
+                script {
+                    sh 'echo Review'
+                }
+                
+                script {
+                    sh 'echo Review'
+                }
+                
                 script {
                     sh 'echo Review'
                 }
