@@ -24,9 +24,9 @@ pipeline {
         stage ( 'Init' ) {
             steps {
                 script {
-                    for(it in env) {
-                        echo "...."
-                    }
+                    env.each(it -> {
+                        echo "${it.key}"
+                    })
                     echo("DB_HOSTNAME: ${env.DB_HOSTNAME}")
                     sh '''
                         echo DB_PASSWORD
