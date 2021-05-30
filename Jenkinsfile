@@ -7,7 +7,6 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr:'10')) 
         disableConcurrentBuilds()
         withFolderProperties()
-        configFileProvider()
     }
     
     environment {
@@ -25,10 +24,13 @@ pipeline {
                 script {
                     
                     echo("DB_HOSTNAME: ${env.DB_HOSTNAME}")
-                    
                     sh 'echo $GLOBAL_VALUE | base64'
                     sh 'echo DB_PASSWORD'
                     sh 'echo $DB_PASSWORD | base64'
+                }
+                configFileProvider(
+                    [configFile(fileId: 'maven-settings', variable: 'MAVEN_SETTINGS')]) {
+                    sh 'echo $MAVEN_SETTINGS'
                 }
             }
         }
