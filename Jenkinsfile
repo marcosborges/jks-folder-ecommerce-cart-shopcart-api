@@ -8,7 +8,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr:'10')) 
         disableConcurrentBuilds()
         withFolderProperties()
-        timeout(time: 1, unit: 'HOURS')
+        timeout(time: 1, unit: 'HOURS') 
     }
     
     environment {
