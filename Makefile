@@ -1,15 +1,15 @@
 
 test: 
-	echo "Test"
+    echo "Test"
   
 sast: 
-	echo "SAST"
+    echo "SAST"
  
 build: 
-	echo "build"
+    echo "build"
 
 docker-publish:
-  echo "docker-publish"
+    echo "docker-publish"
 
 deploy:
-  echo "deploy"
+    echo "deploy"
