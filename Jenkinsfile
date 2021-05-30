@@ -38,7 +38,7 @@ pipeline {
         stage ( 'Review' ) {
             steps {
                 script {
-                    echo label: 'Testing', value: 'UnitTest'
+                    echo label: 'Testing', message: 'UnitTest'
                 }
                 
                 script {
