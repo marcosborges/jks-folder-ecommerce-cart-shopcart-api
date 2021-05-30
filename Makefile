@@ -1,17 +1,17 @@
 
-tests: 
-    echo "Test"
-  
-sast: 
-    echo "SAST"
- 
-build: 
-    echo "build"
+tests:
+	echo "Testing..."
 
-docker-publish:
-    echo "docker-publish"
+sast:
+	echo "Sasting..."
+
+build:
+	echo "Building..."
+
+registry:
+	echo "Registring..."
 
 deploy:
-    echo "deploy"
+	echo "Deploying..."
 
-.PHONY: tests sast build docker-publish deploy
+.PHONY: all help bootstrap check test coverage pylint mypy package clean
