@@ -1,5 +1,5 @@
 
-test: 
+tests: 
     echo "Test"
   
 sast: 
