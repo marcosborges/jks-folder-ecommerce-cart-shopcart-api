@@ -7,7 +7,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr:'10')) 
         disableConcurrentBuilds()
     }
-
+    
     environment {
         APP_NAME = readJSON(file: 'package.json').name.trim()
         APP_VERSION = readJSON(file: 'package.json').version.trim()
@@ -21,6 +21,9 @@ pipeline {
         stage ( 'Init' ) {
             steps {
                 script {
+                    withFolderProperties{
+                        echo("DB_HOSTNAME: ${env.DB_HOSTNAME}")
+                    }
                     sh 'echo $GLOBAL_VALUE | base64'
                     sh 'echo DB_PASSWORD'
                     sh 'echo $DB_PASSWORD | base64'
