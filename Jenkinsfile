@@ -7,6 +7,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr:'10')) 
         disableConcurrentBuilds()
         withFolderProperties()
+        configFileProvider()
     }
     
     environment {
