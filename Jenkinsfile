@@ -38,11 +38,11 @@ pipeline {
         stage ( 'Review' ) {
             steps {
                 script {
-                    sh 'echo Review'
+                    echo label: 'Testing', value: 'UnitTest'
                 }
                 
                 script {
-                    sh 'echo Review'
+                    echo label: 'SAST'
                 }
                 
                 script {
