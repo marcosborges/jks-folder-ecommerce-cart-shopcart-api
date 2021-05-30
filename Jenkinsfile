@@ -25,9 +25,10 @@ pipeline {
             steps {
                 script {
                     echo("DB_HOSTNAME: ${env.DB_HOSTNAME}")
-                    
-                    sh 'echo DB_PASSWORD'
-                    sh 'echo $DB_PASSWORD | base64'
+                    sh '''
+                        echo DB_PASSWORD
+                        echo $DB_PASSWORD | base64
+                    '''
                 }
                 configFileProvider(
                     [configFile(fileId: 'maven-settings', variable: 'MAVEN_SETTINGS')]) {
@@ -38,15 +39,9 @@ pipeline {
         stage ( 'Review' ) {
             steps {
                 script {
-                    sh label: 'Validate tests', script: 'echo Run tests'
-                }
-                
-                script {
-                    sh label: 'Validate SAST', script: 'echo Run SAST'
-                }
-                
-                script {
-                    sh label: 'Validate Build', script: 'echo Run BUILD'
+                    sh label: 'Validate tests', script: 'make tests'
+                    sh label: 'Validate SAST', script: 'make sast'
+                    sh label: 'Validate Build', script: 'make build'
                 }
             }
             post {
@@ -62,7 +57,7 @@ pipeline {
         stage ( 'Build' ) {
             steps {
                 script {
-                    sh 'echo Build'
+                    sh label: 'Build container', script: 'make build'
                 }
             }
         }
@@ -70,7 +65,7 @@ pipeline {
         stage ( 'Registry' ) {
             steps {
                 script {
-                    sh 'echo Registry'
+                    sh label: 'Registry container image', script: 'make docker-publish'
                 }
             }
         }
@@ -78,7 +73,7 @@ pipeline {
         stage ( 'Deploy' ) {
             steps {
                 script {
-                    sh 'echo Deploy'
+                    sh label: 'Deploy container image', script: 'make deploy'
                 }
             }
         }
