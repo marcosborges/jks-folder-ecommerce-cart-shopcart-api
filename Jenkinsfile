@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     echo("DB_HOSTNAME: ${env.DB_HOSTNAME}")
-                    sh 'echo $GLOBAL_VALUE | base64'
+                    
                     sh 'echo DB_PASSWORD'
                     sh 'echo $DB_PASSWORD | base64'
                 }
@@ -38,15 +38,15 @@ pipeline {
         stage ( 'Review' ) {
             steps {
                 script {
-                    echo label: 'Testing', message: 'UnitTest'
+                    sh label: 'Validate tests', script: 'echo Run tests'
                 }
                 
                 script {
-                    echo label: 'SAST'
+                    sh label: 'Validate SAST', script: 'echo Run SAST'
                 }
                 
                 script {
-                    sh 'echo Review'
+                    sh label: 'Validate Build', script: 'echo Run BUILD'
                 }
             }
             post {
