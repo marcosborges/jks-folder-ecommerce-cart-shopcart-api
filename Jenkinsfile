@@ -6,6 +6,7 @@ pipeline {
         preserveStashes(buildCount: 10) 
         buildDiscarder(logRotator(numToKeepStr:'10')) 
         disableConcurrentBuilds()
+        withFolderProperties()
     }
     
     environment {
@@ -21,9 +22,9 @@ pipeline {
         stage ( 'Init' ) {
             steps {
                 script {
-                    withFolderProperties{
-                        echo("DB_HOSTNAME: ${env.DB_HOSTNAME}")
-                    }
+                    
+                    echo("DB_HOSTNAME: ${env.DB_HOSTNAME}")
+                    
                     sh 'echo $GLOBAL_VALUE | base64'
                     sh 'echo DB_PASSWORD'
                     sh 'echo $DB_PASSWORD | base64'
