@@ -13,3 +13,5 @@ docker-publish:
 
 deploy:
     echo "deploy"
+
+.PHONY: tests sast build docker-publish deploy
